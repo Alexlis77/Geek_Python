@@ -17,12 +17,19 @@ max_berries = int(input("Введите максмально возможное 
 from random import randint
 garden_bed = list(randint(1, max_berries) for i in range(N))
 print(garden_bed)
-a = int(input("Введите номер куста: "))
+
+k = 0
 berries = 0
-if a == 1:
-    berries = garden_bed[0] + garden_bed[1] + garden_bed[-1]
-elif a == len(garden_bed):
-    berries = garden_bed[-2] + garden_bed[-1] + garden_bed[0]
-else:
-    berries = garden_bed[a-1] + garden_bed[a-2] + garden_bed[a]
-print(berries, "ягод")
+max_list = []
+
+while (k < N):
+
+    if (k == N - 1):
+        berries = garden_bed[0] + garden_bed[k - 1] + garden_bed[k]
+    else:
+        berries = garden_bed[k - 1] + garden_bed[k + 1] + garden_bed[k]
+    max_list.append(berries)
+    max_list.sort()
+    k += 1
+
+print("максимальное число ягод за один заход - ", max_list[-1])
